@@ -410,6 +410,27 @@ class ExpectHelper {
     const errorMessage = customErrorMsg ? `${customErrorMsg}: Expected "${JSON.stringify(actualValue)}" to match the pattern "${JSON.stringify(expectedPattern)}"` : `Expected "${JSON.stringify(actualValue)}" to match the pattern "${JSON.stringify(expectedPattern)}"`;
     return assert(result, errorMessage);
   }
+
+  /**
+   *
+   * @param {*} [customErrorMsg]
+   */
+  expectFail(customErrorMsg = 'expect fail') {
+    // @ts-ignore
+    output.step(`I expect fail`)
+    return expect.fail(customErrorMsg);
+  }
+
+  /**
+   *
+   * @param {*} actualValue
+   * @param {*} [customErrorMsg]
+   */
+  expectOk(actualValue, customErrorMsg = '') {
+    // @ts-ignore
+    output.step(`I expect "${JSON.stringify(actualValue)}" to be ok`)
+    return expect(actualValue, customErrorMsg).to.be.ok;
+  }
 }
 
 export default ExpectHelper

@@ -667,5 +667,48 @@ describe('#expectContain', () => {
     })
   })
 
+  describe('#expectFail', () => {
+    it('should show error', () => {
+      try {
+        I.expectFail('custom failure message')
+      } catch (e) {
+        expect(e.message).to.contain('custom failure message')
+      }
+    })
+
+    it('should show default error', () => {
+      try {
+        I.expectFail()
+      } catch (e) {
+        expect(e.message).to.contain('expect fail')
+      }
+    })
+  })
+
+  describe('#expectOk', () => {
+    it('should not show error', () => {
+      I.expectOk(true)
+      I.expectOk(1)
+      I.expectOk('text')
+      I.expectOk({})
+    })
+
+    it('should show error', () => {
+      try {
+        I.expectOk(false, 'expected value to be ok')
+      } catch (e) {
+        expect(e.message).to.contain('expected value to be ok')
+      }
+    })
+
+    it('should show default chai error', () => {
+      try {
+        I.expectOk(0)
+      } catch (e) {
+        expect(e.message).to.contain('expected +0 to be truthy')
+      }
+    })
+  })
+
 
 })

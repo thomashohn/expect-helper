@@ -25,4 +25,6 @@ declare class ExpectHelper {
     expectDeepIncludeMembers(superset: any[], set: any[], customErrorMsg?: string): void;
     expectDeepEqualExcluding(actualValue: any, expectedValue: any, fieldsToExclude: string | string[], customErrorMsg?: string): void;
     expectMatchesPattern(actualValue: object, expectedPattern: object, customErrorMsg?: string): void;
-  }  
+    expectFail(customErrorMsg?: string): void;
+    expectOk(actualValue: object, customErrorMsg?: string): void;
+  }
